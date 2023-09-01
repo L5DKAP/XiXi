@@ -58,7 +58,34 @@ Item {
                     color: Qt.lighter(theme.background2, 1.3)
                     radius: 5
                 }
+                SIconButton{
+                    id: iconButton
+                    height: 40
+                    width: 40
+                    source: "qrc:/images/Resources/Icons/Material/settings_white_48dp.svg"
+                    opacity: .4
+                    anchors{
+                        right: parent.right
+                    }
+                    
+                    onClicked: {
+                        menu.open() 
+                    }
+                }
 
+                SContextMenu{
+                    id: menu
+                    //y: parent.width - menu.height
+                    x: parent.width - 10
+                    visible: menu.opened
+                    MenuItem{
+                        text: "Forget Bridge"
+                        onTriggered: {
+                            console.log(`Removing Bridge ${bridge.id} from IP cache.`)
+                            discovery.forgetBridge(bridge.id);
+                        }
+                    }
+                }
                 Column{
                     id: content
                     width: parent.width
