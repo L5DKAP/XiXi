@@ -369,8 +369,21 @@ export function DiscoveryService() {
 			service.log(`Found Cached Device: [${key}: ${JSON.stringify(value)}]`);
 			this.CreateController(value);
 		}
-
 	};
+
+	this.forgetBridge = function(bridgeId){
+		// Remove from ip cache
+		this.cache.Remove(bridgeId);
+		// remove from UI
+		for(const controller of service.controllers){
+			if(controller.id === bridgeId){
+				service.suppressController(controller);
+				service.removeController(controller);
+				
+				return;
+			}
+		}
+	}
 }
 
 
