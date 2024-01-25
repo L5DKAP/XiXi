@@ -56,3 +56,7 @@ function getColorData() {
 export function Shutdown() {
     // Закрытие соединений и очистка ресурсов при завершении работы
 }
+
+export function ImageUrl() {
+    return "";
+}
